@@ -12,24 +12,21 @@ from core.gestor_de_ventana import GestorDeVentana
 from experimento_nback.ensayo import Ensayo
 
 class ExperimentoNBack(Experimento):
-    def __init__(self):
+    def __init__(self, gestor_ventana: GestorDeVentana):
         # TODO: se podria definir el nback (2, 3, 4, etc..) junto con los datos del participante
         self.NBACK: int = 2
         self.N_BLOQUES: int = 4
-        # self.N_ENSAYOS: int = 25
         self.N_ENSAYOS: int = 8
-        # self.PORCENTAJE_TARGETS: float = 0.30
         self.PORCENTAJE_TARGETS: float = 0.25
         # TODO: consultar por cambio de duracion de tiempo del estimulo a una cantidad random dentro de un rango determinado
         # TODO: consultar como se distribuye el tiempo de un ensayo, por cuanto tiempo debe ser visible la letra, si es que el participante deberia poder responder en cualquier momento en el que se muestre la letra de un ensayo. Actualmente hay un tiempo muerto hasta que el programa acepta input mientras muestra la letra del ensayo.
         self.DURACION_DEL_ESTIMULO: float = 0.5  # en segundos
         self.TIEMPO_MAX_DE_RESPUESTA: float = 1.5  # en segundos
         self.INTERVALO_ENTRE_ENSAYOS: float = 1.0
-        # self.ventana: Ventana = Ventana()
         self.participante: Participante = self._obtener_datos_participante()
         self.archivo_salida: str = f"datos_nback_{self.participante.sujeto}.csv"
 
-        self.gestor_ventana: GestorDeVentana = GestorDeVentana()
+        self.gestor_ventana: GestorDeVentana = gestor_ventana
         self._stim_text: visual.TextStim = visual.TextStim(self.gestor_ventana.win, text="", color="white", height=100)
         self._feedback_text: visual.TextStim = visual.TextStim(self.gestor_ventana.win, text="", color="white", height=50, pos=(0, 0))
         self._instruction_text: visual.TextStim = visual.TextStim(self.gestor_ventana.win,
@@ -121,7 +118,7 @@ class ExperimentoNBack(Experimento):
         self._stim_text.text = letra
         self._stim_text.draw()
         self.gestor_ventana.actualizar()
-        core.wait(self.DURACION_DEL_ESTIMULO)
+        # core.wait(self.DURACION_DEL_ESTIMULO)
 
     def _pausa_entre_ensayos(self) -> None:
         self.gestor_ventana.actualizar()
