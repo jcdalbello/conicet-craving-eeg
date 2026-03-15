@@ -1,24 +1,16 @@
 from psychopy import visual, core, event
-from pylsl import StreamInfo, StreamOutlet
 
 from core.experimento import Experimento
 from core.gestor_de_ventana import GestorDeVentana
+from core.transmisor_lsl import TransmisorLSL
 
 class ExperimentoBowl(Experimento):
-    def __init__(self, gestor_ventana: GestorDeVentana) -> None:
+    def __init__(self, gestor_ventana: GestorDeVentana, transmisor_lsl: TransmisorLSL):
         self.DURACION_DE_MUESTRA: int = 3
         self.gestor_ventana: GestorDeVentana = gestor_ventana
+        self.transmisor_lsl: TransmisorLSL = transmisor_lsl
         self.mensaje = visual.TextStim(self.gestor_ventana.win, text="")
         self.texto_contador = visual.TextStim(self.gestor_ventana.win, text="")
-        info = StreamInfo(
-            name='Marcadores_Experimento_Estimulos',
-            type='Markers',
-            channel_count=1,
-            nominal_srate=0,
-            channel_format='string',
-            source_id='exp_psico_01'
-        )
-        self.outlet_lsl = StreamOutlet(info)
 
 
     def ejecutar(self) -> None:
@@ -46,7 +38,7 @@ class ExperimentoBowl(Experimento):
         self.gestor_ventana.actualizar()
 
     def _enviar_trigger_por_lsl(self, trigger: str) -> None:
-        self.outlet_lsl.push_sample([trigger])
+        self.transmisor_lsl.enviar_trigger(trigger)
 
     def _iniciar_contador(self, duracion: int) -> None:
         reloj: core.CountdownTimer = core.CountdownTimer(duracion)
