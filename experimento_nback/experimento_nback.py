@@ -4,11 +4,11 @@ import serial
 
 from typing import List
 
-from experimento_nback.dominio.participante import Participante
-from experimento_nback.dominio.generador_de_ensayos import GeneradorDeEnsayos
+from core.participante import Participante
+from experimento_nback.generador_de_ensayos import GeneradorDeEnsayos
 # from ventana import Ventana
 from core.gestor_de_ventana import GestorDeVentana
-from experimento_nback.dominio.ensayo import Ensayo
+from experimento_nback.ensayo import Ensayo
 
 class ExperimentoNBack:
     def __init__(self):

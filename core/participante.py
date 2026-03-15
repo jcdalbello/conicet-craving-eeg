@@ -1,6 +1,6 @@
-from typing import List, Dict
+from typing import List
 
-from experimento_nback.dominio.genero import Genero
+from core.genero import Genero
 
 class Participante:
     def __init__(self, nombre: str, sujeto: str, edad: str, genero: Genero):

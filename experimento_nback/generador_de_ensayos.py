@@ -1,6 +1,6 @@
 import random
 from typing import List
-from experimento_nback.dominio.ensayo import Ensayo
+from experimento_nback.ensayo import Ensayo
 
 
 class GeneradorDeEnsayos:
