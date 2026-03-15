@@ -10,7 +10,7 @@ class ExperimentoBowl(Experimento):
         self.gestor_ventana: GestorDeVentana = gestor_ventana
         self.transmisor_lsl: TransmisorLSL = transmisor_lsl
         self.mensaje = visual.TextStim(self.gestor_ventana.win, text="")
-        self.texto_contador = visual.TextStim(self.gestor_ventana.win, text="")
+        self.texto_contador = visual.TextStim(self.gestor_ventana.win, text="", height=100)
 
 
     def ejecutar(self) -> None:
