@@ -1,10 +1,10 @@
 from psychopy import visual, core, event
 from pylsl import StreamInfo, StreamOutlet
 
+from core.experimento import Experimento
 from core.gestor_de_ventana import GestorDeVentana
 
-
-class Experimento:
+class ExperimentoBowl(Experimento):
     def __init__(self, gestor_ventana: GestorDeVentana) -> None:
         self.DURACION_DE_MUESTRA: int = 3
         self.gestor_ventana: GestorDeVentana = gestor_ventana

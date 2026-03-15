@@ -4,13 +4,14 @@ import serial
 
 from typing import List
 
+from core.experimento import Experimento
 from core.participante import Participante
 from experimento_nback.generador_de_ensayos import GeneradorDeEnsayos
 # from ventana import Ventana
 from core.gestor_de_ventana import GestorDeVentana
 from experimento_nback.ensayo import Ensayo
 
-class ExperimentoNBack:
+class ExperimentoNBack(Experimento):
     def __init__(self):
         # TODO: se podria definir el nback (2, 3, 4, etc..) junto con los datos del participante
         self.NBACK: int = 2
